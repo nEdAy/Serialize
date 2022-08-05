@@ -64,7 +64,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    api 'com.tencent:mmkv-static:1.2.8' // 数据存储
+    api 'com.tencent:mmkv:1.2.13' // 数据存储
 
     // ================================== 官方工具 ==================================
     api "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
