@@ -24,6 +24,12 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+interface MMKVOwner {
+    val kv: MMKV get() = com.drake.serialize.serialize.kv
+}
+
+val kv: MMKV = MMKV.defaultMMKV()
+
 /**
  * 其修饰的属性字段的读写都会自动映射到本地磁盘
  * 线程安全
@@ -38,6 +44,12 @@ inline fun <reified V> serial(
     name: String? = null,
     kv: MMKV = MMKV.defaultMMKV()
         ?: throw IllegalStateException("MMKV.defaultMMKV() == null, handle == 0 ")
+): ReadWriteProperty<Any, V> = SerialDelegate(default, V::class.java, name, kv)
+
+inline fun <reified V> MMKVOwner.serial(
+    default: V? = null,
+    name: String? = null,
+    kv: MMKV = this.kv
 ): ReadWriteProperty<Any, V> = SerialDelegate(default, V::class.java, name, kv)
 
 /**
@@ -61,6 +73,13 @@ inline fun <reified V> serialLiveData(
         ?: throw IllegalStateException("MMKV.defaultMMKV() == null, handle == 0 ")
 ): ReadOnlyProperty<Any, MutableLiveData<V>> = SerializeLiveDataDelegate(default, V::class.java, name, kv)
 
+inline fun <reified V> MMKVOwner.serialLiveData(
+    default: V? = null,
+    name: String? = null,
+    kv: MMKV = this.kv
+): ReadOnlyProperty<Any, MutableLiveData<V>> =
+    SerializeLiveDataDelegate(default, V::class.java, name, kv)
+
 /**
  * 其修饰的属性字段的读写都会自动映射到本地磁盘
  * 和[serial]不同的是通过内存/磁盘双通道读写来优化读写性能
@@ -79,6 +98,12 @@ inline fun <reified V> serialLazy(
     name: String? = null,
     kv: MMKV = MMKV.defaultMMKV()
         ?: throw IllegalStateException("MMKV.defaultMMKV() == null, handle == 0 ")
+): ReadWriteProperty<Any, V> = SerialLazyDelegate(default, V::class.java, name, kv)
+
+inline fun <reified V> MMKVOwner.serialLazy(
+    default: V? = null,
+    name: String? = null,
+    kv: MMKV = this.kv
 ): ReadWriteProperty<Any, V> = SerialLazyDelegate(default, V::class.java, name, kv)
 
 /**
