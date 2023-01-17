@@ -12,7 +12,7 @@
 <img src="https://img.shields.io/badge/license-Apache-blue"/>
 <a href="http://liangjingkanji.github.io/Serialize/updates"><img src="https://img.shields.io/badge/updates-%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-brightgreen"/></a>
 <a href="https://liangjingkanji.github.io/Serialize/api/"><img src="https://img.shields.io/badge/api-%E5%87%BD%E6%95%B0%E6%96%87%E6%A1%A3-red"/></a>
-<a href="https://jq.qq.com/?_wv=1027&k=vWsXSNBJ"><img src="https://img.shields.io/badge/QQ群-752854893-blue"/></a>
+<img src="https://raw.githubusercontent.com/liangjingkanji/liangjingkanji/master/img/group.svg"/>
 </p>
 
 
@@ -20,13 +20,10 @@
 
 - 创建自动存储本地的字段(内部使用[MMKV](https://github.com/Tencent/MMKV))
 - 创建自动存储本地的LiveData可观察字段
-- 创新式使用双通道读写磁盘, 速度完爆sqlite/sp/mmkv. 完美解决ANR(主线程读写10w次)
-- 大数据对象磁盘读写就像内存读写一样快
+- 存储读写对象
+- 创新式使用双通道读写磁盘, 耗时大幅度低于SQLite/sp/mmkv, 完美解决ANR
 - 快捷跳转Activity/Fragment和参数传递
 - 创建自动注入Activity/Fragment参数的字段(支持可空类型)
-- 创建意外销毁自动保存/恢复的字段(ViewModel)
-- 快捷打开意图
-
 
 
 <br>
@@ -60,7 +57,7 @@ dependencyResolutionManagement {
 然后在 module 的 build.gradle 添加依赖框架
 
 ```groovy
-implementation 'com.github.liangjingkanji:Serialize:1.3.1'
+implementation 'com.github.liangjingkanji:Serialize:2.0.0'
 ```
 
 <br>
